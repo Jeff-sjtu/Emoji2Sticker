@@ -19,7 +19,7 @@ var vm = new Vue({
         search: function () {
             this.$data.resultImgList = [];
             this.$data.loading = true;
-            axios.post('/public/getImg?',{
+            axios.post('localhost:5000/getImg',{
                 desc: this.$data.descList
             }).then((response) => {
                 this.$data.resultImgList = response.resultImgList;
