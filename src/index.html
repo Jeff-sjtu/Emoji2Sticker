@@ -8,11 +8,13 @@
     <link href="./index.css" rel="stylesheet" type="text/css">
 <body>
     <div id="app">
+        <img class="logo" src="logo.jpg"/>
         <div class="ctn">
             <div class="ipt-cnt">
                 <input class="ipt" v-model="chosenEmoji">
                 <div class="ul-ctn">
                     <div class="icon" v-for="(value, key) in EMOJI_MAP"
+                         :value="value[0]" :desc="value[1]"
                          @click="choseEmoji(key, value[1])">{{key}}
                     </div>
                 </div>
