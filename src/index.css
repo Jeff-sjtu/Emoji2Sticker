@@ -2,20 +2,18 @@
     width: 100%;
     height: 100%;
     padding: 10px 30px;
+    display: flex;
 }
 .ctn .ipt-cnt {
     width: 562px;
 }
 .ctn .ipt-cnt .ipt {
-    -webkit-appearance: none;
-    background-color: #fff;
-    background-image: none;
     border-radius: 4px;
     border: 1px solid #d8dce5;
     box-sizing: border-box;
     color: #5a5e66;
     display: inline-block;
-    font-size: inherit;
+    font-size: 25px;
     height: 40px;
     line-height: 1;
     outline: none;
@@ -31,31 +29,55 @@
     width: 100%;
     font-size: 25px;
     padding: 10px;
-    margin-top: 40px;
+    margin-top: 35px;
     border-radius: 8px;
     box-sizing: border-box;
     border: 1px solid #e6ebf5;
     background-color: #fafafa;
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     transition: opacity .3s,transform .3s,left .3s,right .3s,top .4s,bottom .3s;
-    overflow: hidden;
     position: relative;
     display: flex;
     flex-wrap: wrap;
 }
-.ctn .ul-ctn::after {
+.ctn .ul-ctn::before, .ctn .ul-ctn::after {
     content: '';
     position: absolute;
     width: 0;  height: 0;
-    border-bottom: 30px solid #fafafa;
-    border-left: 30px solid #fafafa;
-    border-right: 30px solid #fafafa;
+    border-right: 35px solid transparent;
+    border-bottom: 35px solid #e6ebf5;
+    border-left: 35px solid transparent;
     left: 76px;
-    top: -10px;
+    top: -35px;
+}
+.ctn .ul-ctn::after {
+    border-right: 35px solid transparent;
+    border-bottom: 35px solid #fafafa;
+    border-left: 35px solid transparent;
+    top: -34px;
 }
 .ctn .ul-ctn .icon {
     width: 30px;
     height: 42px;
     line-height: 42px;
     text-align: center;
+}
+.rst-cnt {
+    padding: 0 30px;
+}
+.rst-cnt .label {
+    background-color: rgba(64,158,255,.1);
+    display: inline-block;
+    padding: 0 10px;
+    height: 40px;
+    line-height: 38px;
+    font-size: 20px;
+    color: #409eff;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid rgba(64,158,255,.2);
+    white-space: nowrap;
+}
+.rst-cnt .imgList{
+    margin-top: 35px;
 }
