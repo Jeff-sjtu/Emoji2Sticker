@@ -42,7 +42,6 @@ def getI(cur,i):
         return temp
 
 def init(cur):
-    cur.execute("drop table img")
     cur.execute("""
 CREATE TABLE `img`(
    `img_id` INT NOT NULL,
