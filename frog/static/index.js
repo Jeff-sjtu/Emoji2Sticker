@@ -11,10 +11,8 @@ var vm = new Vue({
     watch: {
         chosenEmoji: function (newVal) {
             this.$data.descList = [];
-            var reg=/.{2}/g,
+            var reg = /.{2}/g,
                 emojiArr = newVal.match(reg);
-            emojiArr.push(newVal.substring(emojiArr.join('').length));
-            emojiArr = emojiArr.slice(0, emojiArr.length-1);
             emojiArr.forEach((item) => {
                 this.$data.descList.push(jEmoji.EMOJI_MAP[item][1]);
             })
@@ -30,7 +28,7 @@ var vm = new Vue({
             axios.post('/getImg',{
                 desc: this.$data.descList
             }).then((response) => {
-                this.$data.resultImgList = response;
+                this.$data.resultImgList = response.data;
                 this.$data.loading = false;
             }).catch((response) => {
                 console.log(response)
