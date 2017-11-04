@@ -8,4 +8,4 @@ def getScore(imgs_info, taglist):
         for cla in tag_info['classes']:
             if cla['class_name'] in taglist:
                 scores[i] += cla['confidence']
-    
+    return scores
