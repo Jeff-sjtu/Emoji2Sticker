@@ -32,8 +32,8 @@ def main():
         tag_info = getClasses(dcrp)
         img.append(tag_info)
         print(img)
-        
-    connect.commit() 
+
+    connect.commit()
     connect.close()
 
 if __name__ == '__main__':
