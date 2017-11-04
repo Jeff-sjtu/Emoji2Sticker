@@ -11,6 +11,7 @@ def hello_world():
 def login():
     if request.method == 'POST':
         data = request.get_data()
+        print data
         data = ['1','2','3']
         #TODO
         data = [base64.b64encode(d) for d in data]
