@@ -6,6 +6,8 @@ import mysql.connector
 from flask import Flask,request
 app = Flask(__name__)
 
+imgs_info = None
+
 @app.route('/')
 def hello_world():
     return 'Hello World!'
@@ -48,7 +50,8 @@ def main(tagList):
     connect = mysql.connector.connect(**config)
     cur = connect.cursor()
     
-    imgs_info = getAll(cur)
+    if imgs_info==None:
+        imgs_info = getAll(cur)
 
     scores = getScore(imgs_info, tagList)
 
