@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <link href="../lib/emoji.css" rel="stylesheet" type="text/css">
+    <link href="./index.css" rel="stylesheet" type="text/css">
+<body>
+    <div id="app">
+        <div class="ctn">
+            <div class="ipt-cnt">
+                <input class="ipt" @focus="showSelect">
+                <div class="ul-ctn" v-show="showSelectOption">
+                    <div class="icon" v-for="(value, key) in EMOJI_MAP" :value="value[0]"
+                         @click="choseEmoji(value)">{{key}}</div>
+                </div>
+            </div>
+            <div class="rst-cnt">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script src="../lib/vue.js"></script>
+    <script src="../lib/emoji.js"></script>
+    <script src="../lib/axios.js"></script>
+    <script src="./index.js"></script>
+</html>
