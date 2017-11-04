@@ -4,6 +4,7 @@
 import httplib, urllib, base64, json
 from jeff.translate import translate
 
+
 ###############################################
 #### Update or verify the following values. ###
 ###############################################
@@ -45,18 +46,21 @@ def text_detection(url):
     parsed = json.loads(data)
     # print ("Response:")
     text = ''
-    for i in parsed[u'regions']:
-        message = ''
-        for j in i[u'lines']:
-            for k in j[u'words']:
-                tex = k['text']
-                if (tex > u'\u4E00') & (tex < u'\u9FA5'):
-                    t = tex.encode('utf-8')
-                    message += t
-                else:
-                    message += ' '
-        text += message
-        text += ' '
+    if u'regions' in parsed:
+        for i in parsed[u'regions']:
+            message = ''
+            for j in i[u'lines']:
+                for k in j[u'words']:
+                    tex = k['text']
+                    if (tex > u'\u4E00') & (tex < u'\u9FA5'):
+                        t = tex.encode('utf-8')
+                        message += t
+                    else:
+                        message += ' '
+            text += message
+            text += ' '
+    else:
+        print(parsed)
     # print (parsed)
     # print (json.dumps(parsed, sort_keys=True, indent=2))
     conn.close()
@@ -65,4 +69,3 @@ def text_detection(url):
     if text:
         text = translate(text)[0].replace(',', '').replace('.', '')
     return text
-
