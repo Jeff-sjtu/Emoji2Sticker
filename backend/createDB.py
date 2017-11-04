@@ -28,11 +28,15 @@ def main():
         imgName, dcrp = item.split(',')
         imgName = imgName.strip()
         dcrp = dcrp.strip()
-        img = [imgName, dcrp]
+        #img = [imgName, dcrp]
         tag_info = getClasses(dcrp)
-        img.append(tag_info)
-        print(img)
-
+        tag_info['discription'] = dcrp
+        tag_info['imgName'] = imgName
+        #with open('./pictures/%s' %imgName, 'rb') as imgfile:
+        base64_data = base64.b64encode(imgName)
+        insert(cur,base64_data,tag_info)
+        #img.append(tag_info)
+            #print(getALL(cur))
     connect.commit()
     connect.close()
 
