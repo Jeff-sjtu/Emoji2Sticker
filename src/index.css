@@ -84,6 +84,7 @@ body {
     box-sizing: border-box;
     border: 1px solid rgba(64,158,255,.2);
     white-space: nowrap;
+    text-decoration: none;
 }
 .rst-cnt .imgList{
     margin-top: 35px;
