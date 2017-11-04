@@ -27,7 +27,8 @@ while(True):
             temp = requests.get('http://www.doutula.com/search?keyword='+d)
             #print temp.text
             reg = re.compile(r'data-original="(.*)" style.*\n.*none">(.*)<')
-            regMatch = reg.match(temp.text)
-            for item in regMatch:
-                print(type(item))
+            result = reg.findall(temp.text)
+            for d in result:
+                pic = requests.get(d[0],timeout=10).text
+                print pic,d[1]
             raw_input()

@@ -53,7 +53,7 @@ def main(tagList):
     for i in range(len(imgs_info)):
         imgs_info[i].append(scores[i])
 
-    res_img = sorted(imgs_info,key=lamda x:x[3])
+    res_img = sorted(imgs_info,key=lambda x:x[3])
     final_res = []
     cnt = 0
     for item in imgs_info:
