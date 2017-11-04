@@ -87,4 +87,14 @@ body {
 }
 .rst-cnt .imgList{
     margin-top: 35px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.rst-cnt .imgList .emojiImg{
+    margin: 0 10px 10px 0;
+    border: 1px solid #d8dce5;
+}
+.rst-cnt .imgList .loading {
+    width: 45px;
+    height: 45px;
 }
