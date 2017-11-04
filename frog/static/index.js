@@ -19,7 +19,7 @@ var vm = new Vue({
             axios.post('/getImg',{
                 desc: this.$data.descList
             }).then((response) => {
-                this.$data.resultImgList = response.resultImgList;
+                this.$data.resultImgList = response;
                 this.$data.loading = false;
             }).catch((response) => {
                 console.log(response)
