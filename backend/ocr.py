@@ -1,5 +1,8 @@
 ########### Python 2.7 #############
+#coding=utf8
+
 import httplib, urllib, base64, json
+from jeff.translate import translate
 
 ###############################################
 #### Update or verify the following values. ###
@@ -30,14 +33,8 @@ params = urllib.urlencode({
     'detectOrientation ': 'true',
 })
 
-# The URL of a JPEG image containing text.
-
-ignore = [u'\u002c', u'\u002e', u'\u002f', u'\u003b', u'\u0027', u'\u005b', u'\u005d', u'\u005c', u'\u002d', u'\u003d', u'\u003c', 
-          u'\u003e', u'\u003f', u'\u003a', u'\u0022', u'\u007b', u'\u007d', u'\u007c', u'\u005f,' u'\u002b', u'\uff0c', u'\u3002', u'\uff01', u'\uff1f',
-          u'\u3001', u'\uff1b', u'\u2018', u'\u3010', u'\u3011', u'\u3001', u'\u300a', u'\u300b', u'\uff1f', u'\uff1a', u'\u201c']
-
-# ignore = ['!', '?']
 def text_detection(url):
+    body = "{'url':'" + url + "'}"
     # Execute the REST API call and get the response.
     conn = httplib.HTTPSConnection('westcentralus.api.cognitive.microsoft.com')
     conn.request("POST", "/vision/v1.0/ocr?%s" % params, body, headers)
@@ -47,22 +44,25 @@ def text_detection(url):
     # 'data' contains the JSON data. The following formats the JSON data for display.
     parsed = json.loads(data)
     # print ("Response:")
-    text = []
+    text = ''
     for i in parsed[u'regions']:
         message = ''
         for j in i[u'lines']:
             for k in j[u'words']:
-                flag = 0
-                for t in ignore:
-                    if k['text'] == t:
-                        flag = 1
-                if flag:
-                    message += ' '    
+                tex = k['text']
+                if (tex > u'\u4E00') & (tex < u'\u9FA5'):
+                    t = tex.encode('utf-8')
+                    message += t
                 else:
-                    message += k['text']
-        text.append(message)
+                    message += ' '
+        text += message
+        text += ' '
     # print (parsed)
     # print (json.dumps(parsed, sort_keys=True, indent=2))
     conn.close()
+    text = text.strip()
+    # print(text)
+    if text:
+        text = translate(text)[0].replace(',', '').replace('.', '')
     return text
 
