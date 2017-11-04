@@ -24,6 +24,7 @@ def main():
     #print "==================="
     f = open('../frog/pictures/name.txt','r')
     info = f.readlines()
+    cnt = 0
     for item in info:
         imgName, dcrp = item.split(',')
         imgName = imgName.strip()
@@ -37,6 +38,9 @@ def main():
         insert(cur,base64_data,tag_info)
         #img.append(tag_info)
             #print(getALL(cur))
+        cnt += 1
+        if cnt>=200:
+            break
     connect.commit()
     connect.close()
 
