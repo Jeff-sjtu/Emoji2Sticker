@@ -30,8 +30,7 @@ def login():
         data = [base64.b64decode(d) for d in data]
         result = []
         for d in data:
-            with open("./pictures/%s" %d,'rb') as f:
-                result.append(base64.b64encode(f.read()))
+            result.append("http://139.198.189.135:5000/static/pictures/"+d)
         return json.dumps(result)
     else:
         pass
