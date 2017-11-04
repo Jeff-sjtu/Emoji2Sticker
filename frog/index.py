@@ -61,7 +61,7 @@ def main(tagList):
     final_res = []
     cnt = 0
     for item in imgs_info:
-        if item[3]>=thrd and cnt<5:
+        if item[3]>=thrd and cnt<3:
             final_res.append(item[1])
 
 
