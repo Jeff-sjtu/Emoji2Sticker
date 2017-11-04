@@ -14,7 +14,7 @@ def main():
     imArr[imArr>=thrdGrey] = 1
     imArr = deNoise(imArr, thrdNoise)
     imArr = imArr*255
-    Image.fromarray(imArr).save('dage2.jpg')
+    Image.fromarray(imArr).save('dage3.jpg')
 
 def deNoise(imArr, N):
     size = 3
