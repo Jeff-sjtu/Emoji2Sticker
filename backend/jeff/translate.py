@@ -39,5 +39,5 @@ def translate(q):
             httpClient.close()
 
 if __name__ == '__main__':
-    s = translate('恐吓')
+    s = translate('帅')
     print(s[0])
