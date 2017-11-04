@@ -8,10 +8,21 @@ var vm = new Vue({
         resultImgList: [],
         imgWidth: (document.body.scrollWidth - 712) / 2
     },
+    watch: {
+        chosenEmoji: function (newVal) {
+            this.$data.descList = [];
+            var reg=/.{2}/g,
+                emojiArr = newVal.match(reg);
+            emojiArr.push(newVal.substring(emojiArr.join('').length));
+            emojiArr = emojiArr.slice(0, emojiArr.length-1);
+            emojiArr.forEach((item) => {
+                this.$data.descList.push(jEmoji.EMOJI_MAP[item][1]);
+            })
+        }
+    },
     methods: {
-        choseEmoji: function (chosenEmoji, desc) {
+        choseEmoji: function (chosenEmoji) {
             this.$data.chosenEmoji += chosenEmoji;
-            this.$data.descList.push(desc);
         },
         search: function () {
             this.$data.resultImgList = [];
