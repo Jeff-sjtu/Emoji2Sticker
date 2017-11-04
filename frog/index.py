@@ -56,13 +56,13 @@ def main(tagList):
     for i in range(len(imgs_info)):
         imgs_info[i].append(scores[i])
 
-    res_img = sorted(imgs_info,key=lambda x:x[3])
+    res_img = sorted(imgs_info,key=lambda x:-x[3])
     for i in range(max(3,len(imgs_info))):
         print(imgs_info[i][2])
     final_res = []
     cnt = 0
-    for item in imgs_info:
-        if item[3]>=thrd and cnt<3:
+    for item in res_img:
+        if item[3]>=thrd and cnt<4:
             final_res.append(item[1])
         cnt += 1
 

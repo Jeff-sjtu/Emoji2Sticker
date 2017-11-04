@@ -39,6 +39,7 @@ def main():
         #img.append(tag_info)
             #print(getALL(cur))
         cnt += 1
+        print("%d/200"%(cnt))
         if cnt>=200:
             break
     connect.commit()
