@@ -22,7 +22,7 @@ def main():
     #print "==================="
     #print getI(cur,1)
     #print "==================="
-    f = open('resultEnglish.txt','r')
+    f = open('../frog/pictures/name.txt','r')
     info = f.readlines()
     for item in info:
         imgName, dcrp = item.split(',')
