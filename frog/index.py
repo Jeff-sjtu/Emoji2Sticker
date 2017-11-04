@@ -1,7 +1,8 @@
 import json
 import base64
-import database
-import util
+from database import *
+from util import *
+import mysql.connector
 from flask import Flask,request
 app = Flask(__name__)
 
@@ -26,8 +27,12 @@ def login():
 
         data = main(tagList)
 
-        data = [base64.b64encode(d) for d in data]
-        return json.dumps(data)
+        data = [base64.b64decode(d) for d in data]
+        result = []
+        for d in data:
+            with open("./pictures/%s" %d,'rb') as f:
+                result.append(base64.b64encode(f.read()))
+        return json.dumps(result)
     else:
         pass
     return 'it works'
@@ -43,7 +48,6 @@ def main(tagList):
     }
     connect = mysql.connector.connect(**config)
     cur = connect.cursor()
-    init(cur)
     
     imgs_info = getAll(cur)
 
