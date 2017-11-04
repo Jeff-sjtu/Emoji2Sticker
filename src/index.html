@@ -26,7 +26,8 @@
                 </div>
             </div>
             <div class="rst-cnt">
-                <span class="label">搜索到的表情包</span>
+                <span class="label"
+                    @click="search()">搜索到的表情包</span>
                 <div class="imgList">
                     <img src="./img/loading.gif" v-show="loading" class="loading"/>
                     <img :src="item" v-for="item in resultImgList" class="emojiImg" :width="imgWidth" :height="imgWidth" />

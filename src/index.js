@@ -12,16 +12,16 @@ var vm = new Vue({
     },
     methods: {
         choseEmoji: function (chosenEmoji, desc) {
-            this.$data.chosenEmoji = chosenEmoji;
-            this.$data.resultImgList = [];
-            this.$data.loading = true;
-            axios.get(`/public/getImg?desc=${desc}`)
-                .then((response) => {
-                    this.$data.resultImgList = response.resultImgList;
-                    this.$data.loading = false;
-                }).catch((response) => {
-                    console.log(response)
-                })
+            this.$data.chosenEmoji += chosenEmoji;
+            // this.$data.resultImgList = [];
+            // this.$data.loading = true;
+            // axios.get(`/public/getImg?desc=${desc}`)
+            //     .then((response) => {
+            //         this.$data.resultImgList = response.resultImgList;
+            //         this.$data.loading = false;
+            //     }).catch((response) => {
+            //         console.log(response)
+            //     })
         }
     }
 });
