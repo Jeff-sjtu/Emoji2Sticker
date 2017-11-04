@@ -5,10 +5,7 @@ var vm = new Vue({
         chosenEmoji: '',
         descList: [],
         loading: false,
-        resultImgList: [
-            'http://img5.imgtn.bdimg.com/it/u=257907743,1351527336&fm=27&gp=0.jpg',
-            'http://img1.imgtn.bdimg.com/it/u=2562655338,3938992529&fm=27&gp=0.jpg'
-        ],
+        resultImgList: [],
         imgWidth: (document.body.scrollWidth - 712) / 2
     },
     methods: {
