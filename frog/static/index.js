@@ -28,9 +28,11 @@ var vm = new Vue({
             axios.post('/getImg',{
                 desc: this.$data.descList
             }).then((response) => {
+                this.$data.chosenEmoji = '';
                 this.$data.resultImgList = response.data;
                 this.$data.loading = false;
             }).catch((response) => {
+                this.$data.chosenEmoji = '';
                 console.log(response)
             })
         }
