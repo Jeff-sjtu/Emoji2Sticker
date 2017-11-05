@@ -1,0 +1,4 @@
+numpy
+flask
+watson-developer-cloud
+requests
