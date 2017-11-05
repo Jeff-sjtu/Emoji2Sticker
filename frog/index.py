@@ -33,15 +33,20 @@ def login():
         global hack
         #print hack
         print hack_data
+        flag = False
         for d in hack:
             if hack_data==d[0]:
+                flag = True
                 result.append("http://139.198.189.135:5000/static/hack/"+d[1])
         data = main(tagList)
 
         data = [base64.b64decode(d) for d in data]
         for d in data:
             result.append("http://139.198.189.135:5000/static/pictures/"+d)
-        return json.dumps(result[:4])
+        if flag:
+            return json.dumps(result[:2])
+        else:
+            return json.dumps(result[:4])
     else:
         pass
     return 'it works'

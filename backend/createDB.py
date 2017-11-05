@@ -32,16 +32,21 @@ def main():
         imgName = imgName.strip()
         #dcrp = dcrp.strip()
         #img = [imgName, dcrp]
-        tag_info = getClasses("")
-        tag_info['discription'] = dcrp
+        tag_info = getClasses("o")
+        tag_info['discription'] = ','.join(dcrp)[:-2]
         tag_info['imgName'] = imgName
         tag_info['classes'] = []
         for tag in dcrp:
-            tag_info['classes'].append({u'class_name': tag, u'confidence': 1})
+            if tag[-2] == '\r':
+                tag = tag[:-2]
+            if tag[-1] == '\n':
+                tag = tag[:-1]
+            tag_info['classes'].append({u'class_name': tag, u'confidence': float(1)})
+        
         #with open('./pictures/%s' %imgName, 'rb') as imgfile:
         base64_data = base64.b64encode(imgName)
         print(tag_info)
-        #insert(cur,base64_data,tag_info)
+        insert(cur,base64_data,tag_info)
         #img.append(tag_info)
             #print(getALL(cur))
         cnt += 1
