@@ -3,6 +3,7 @@ var vm = new Vue({
     data: {
         EMOJI_MAP: jEmoji.EMOJI_MAP,
         chosenEmoji: '',
+        loading: false,
         descList: [],
         sendImgList: [],
         showImgList: false,
@@ -30,12 +31,15 @@ var vm = new Vue({
             if(this.$data.chosenEmoji === ''){
                 return;
             }
+            this.$data.showImgList = true;
+            this.$data.loading = true;
             axios.post('/getImg',{
                 desc: this.$data.descList
             }).then((response) => {
-                this.$data.showImgList = true;
                 this.$data.resultImgList = response.data;
+                this.$data.loading = false;
             }).catch((response) => {
+                this.$data.showImgList = false;
                 console.log(response)
             });
             this.$data.chosenEmoji = '';

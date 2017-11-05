@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<!--<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">-->
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <html>
 <head>
@@ -21,6 +22,8 @@
                 </div>
             </div>
             <div class="rst-cnt" v-show="showImgList">
+                <img src="./img/loading.gif" :width="20" :height="20"
+                    v-show="loading"/>
                 <div class="imgList">
                     <img :src="item" v-for="item in resultImgList" class="emojiImg"
                         @click="sendImg(item)"/>
