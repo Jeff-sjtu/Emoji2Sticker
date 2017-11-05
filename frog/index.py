@@ -3,10 +3,11 @@ import base64
 from database import *
 from util import *
 import mysql.connector
+import copy
 from flask import Flask,request
 app = Flask(__name__)
 
-imgs_info = None
+all_imgs = None
 
 @app.route('/')
 def hello_world():
@@ -39,6 +40,7 @@ def login():
     return 'it works'
 
 def main(tagList):
+    global all_imgs
     # initial database
     config = {
         'user': 'root',
@@ -50,9 +52,10 @@ def main(tagList):
     connect = mysql.connector.connect(**config)
     cur = connect.cursor()
     
-    if imgs_info==None:
-        imgs_info = getAll(cur)
+    if all_imgs==None:
+        all_imgs = getAll(cur)
 
+    imgs_info = copy.deepcopy(all_imgs)
     scores = getScore(imgs_info, tagList)
 
     thrd = np.max(scores)*0.3
