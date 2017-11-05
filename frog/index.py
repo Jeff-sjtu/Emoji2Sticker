@@ -8,7 +8,7 @@ from flask import Flask,request
 app = Flask(__name__)
 
 all_imgs = None
-
+hack = []
 @app.route('/')
 def hello_world():
     return 'Hello World!'
@@ -19,8 +19,7 @@ def login():
         data = request.get_data()
         data = json.loads(data)
         tagList = data['desc']
-        #data = ['1','2','3']
-        #TODO
+        
         tmp = []
         for item in tagList:
             tag = item.split(' ')
@@ -28,13 +27,21 @@ def login():
                 tmp.append(tag_item)
         tagList = tmp
 
+        result = []
+
+        hack_data = ''.join(tmp)
+        global hack
+        #print hack
+        print hack_data
+        for d in hack:
+            if hack_data==d[0]:
+                result.append("http://139.198.189.135:5000/static/hack/"+d[1])
         data = main(tagList)
 
         data = [base64.b64decode(d) for d in data]
-        result = []
         for d in data:
             result.append("http://139.198.189.135:5000/static/pictures/"+d)
-        return json.dumps(result)
+        return json.dumps(result[:4])
     else:
         pass
     return 'it works'
@@ -63,8 +70,8 @@ def main(tagList):
         imgs_info[i].append(scores[i])
 
     res_img = sorted(imgs_info,key=lambda x:-x[3])
-    for i in range(max(3,len(imgs_info))):
-        print(imgs_info[i][2])
+    #for i in range(max(3,len(imgs_info))):
+        #print(imgs_info[i][2])
     final_res = []
     cnt = 0
     for item in res_img:
@@ -80,5 +87,8 @@ def main(tagList):
     return final_res
 
 if __name__ == '__main__':
+    with open('hack.csv','rb') as f:
+        temp = f.readlines()
+        hack = [t.split(",") for t in temp]
     app.run(host='0.0.0.0')
 
