@@ -10,7 +10,7 @@ natural_language_classifier = NaturalLanguageClassifierV1(
 
 def getClasses(tmp):
     classes = natural_language_classifier.classify('1e0d8ex232-nlc-28667', tmp)
-    #print(classes)
+    print(classes)
     return classes
 
 
