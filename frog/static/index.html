@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Emoji2Img</title>
 </head>
     <link href="./lib/emoji.css" rel="stylesheet" type="text/css">
@@ -11,28 +13,54 @@
     <script src="./lib/axios.js"></script>
 <body>
     <div id="app">
-        <img class="logo" src="./img/logo.jpg"/>
-        <div class="ctn">
-            <div class="ipt-cnt">
-                <input class="ipt" v-model="chosenEmoji">
-                <div class="ul-ctn">
-                    <div class="icon"
-                         v-for="(value, key) in EMOJI_MAP"
-                         :value="value[0]"
-                         :desc="value[1]"
-                         @click="choseEmoji(key,value[1])">
-                        {{key}}
-                    </div>
+        <div class="cnt">
+            <div class="user">
+                <div class="mn" v-for="item in sendImgList">
+                    <img src="./img/user.jpg" class="user-img" />
+                    <img :src="item" class="sticker" />
                 </div>
             </div>
-            <div class="rst-cnt">
-                <a href="javascript:void(0)" class="label" @click="search()">搜索</a>
+            <div class="rst-cnt" v-show="showImgList">
                 <div class="imgList">
-                    <img src="./img/loading.gif" v-show="loading" class="loading"/>
-                    <img :src="item" v-for="item in resultImgList" class="emojiImg" :width="imgWidth" :height="imgWidth" />
+                    <img :src="item" v-for="item in resultImgList" class="emojiImg"
+                        @click="sendImg(item)"/>
                 </div>
             </div>
         </div>
+        <div class="m-mn">
+            <div class="ipt-cnt">
+                <input class="ipt" v-model="chosenEmoji">
+                <a href="javascript:void(0)" class="label" @click="search()">发送</a>
+            </div>
+            <div class="ul-ctn">
+                <div class="icon"
+                     v-for="(value, key) in EMOJI_MAP"
+                     :value="value[0]"
+                     :desc="value[1]"
+                     @click="choseEmoji(key)">
+                    {{key}}
+                </div>
+            </div>
+        </div>
+        <!--<div class="ctn">-->
+            <!--<div class="ipt-cnt">-->
+                <!--<div class="ul-ctn">-->
+                    <!--<div class="icon"-->
+                         <!--v-for="(value, key) in EMOJI_MAP"-->
+                         <!--:value="value[0]"-->
+                         <!--:desc="value[1]"-->
+                         <!--@click="choseEmoji(key,value[1])">-->
+                        <!--{{key}}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="rst-cnt">-->
+                <!--<div class="imgList">-->
+                    <!--<img src="./img/loading.gif" v-show="loading" class="loading"/>-->
+                    <!--<img :src="item" v-for="item in resultImgList" class="emojiImg" :width="imgWidth" :height="imgWidth" />-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 
 </body>

@@ -4,13 +4,16 @@ var vm = new Vue({
         EMOJI_MAP: jEmoji.EMOJI_MAP,
         chosenEmoji: '',
         descList: [],
-        loading: false,
-        resultImgList: [],
-        imgWidth: (document.body.scrollWidth - 712) / 2
+        sendImgList: [],
+        showImgList: false,
+        resultImgList: []
     },
     watch: {
         chosenEmoji: function (newVal) {
             this.$data.descList = [];
+            if(newVal === ''){
+                return;
+            }
             var reg = /.{2}/g,
                 emojiArr = newVal.match(reg);
             emojiArr.forEach((item) => {
@@ -24,16 +27,22 @@ var vm = new Vue({
         },
         search: function () {
             this.$data.resultImgList = [];
-            this.$data.loading = true;
+            if(this.$data.chosenEmoji === ''){
+                return;
+            }
             axios.post('/getImg',{
                 desc: this.$data.descList
             }).then((response) => {
+                this.$data.showImgList = true;
                 this.$data.resultImgList = response.data;
-                this.$data.loading = false;
             }).catch((response) => {
                 console.log(response)
             });
             this.$data.chosenEmoji = '';
+        },
+        sendImg: function (src) {
+            this.$data.showImgList = false;
+            this.$data.sendImgList.unshift(src);
         }
     }
 });
